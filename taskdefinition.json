@@ -1,0 +1,21 @@
+{
+    "id": "task",
+    "displayName": "task",
+    "commandLine": "command",
+    "constraints": {
+      "maxWallClockTime": "P1D",
+      "maxTaskRetryCount": 2
+    },
+    "outputFiles":[{
+          "destination":{
+              "container":{
+                  "containerUrl":"https://...SAStoken",
+                  "path":"output/run1"
+              }
+          },
+          "filePattern": "**/*.csv",
+          "uploadOptions": {
+              "uploadCondition":"tasksuccess"
+          }
+    }]
+}

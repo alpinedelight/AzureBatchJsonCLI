@@ -1,0 +1,58 @@
+{
+    "id": "CLUSTERNAME",
+    "displayName": "CLUSTERNAME",
+    "vmSize": "CLUSTERVMTYPE",
+    "virtualMachineConfiguration": {
+        "imageReference": {
+            "publisher": "canonical",
+            "offer": "ubuntuserver",
+            "sku": "18.04-lts",
+            "version": "latest"
+        },
+        "nodeAgentSkuId": "batch.node.ubuntu 18.04",
+        "dataDisks": [],
+        "diskEncryptionConfiguration": {
+            "targets": []
+        }
+    },
+    "scaleSettings": {
+        "fixedScale": {
+            "resizeTimeout": "PT15M",
+            "targetDedicatedNodes": 0,
+            "targetLowPriorityNodes": 0
+        }
+    },
+    "interNodeCommunication": "Disabled",
+    "networkConfiguration": {
+        "subnetId": "/subscriptions/TENANT/resourceGroups/RESOURCEGROUP/providers/Microsoft.Network/virtualNetworks/VNETNAME/subnets/SUBNETNAME"
+    },
+    "maxTasksPerNode": 1,
+    "taskSchedulingPolicy": {
+        "nodeFillType": "Pack"
+    },
+    "startTask": {
+        "commandLine": "CLUSTERSTARTCMD",
+        "resourceFiles": [],
+        "environmentSettings": [
+            {
+                "name": "DEBIAN_FRONTEND",
+                "value": "noninteractive"
+            }
+        ],
+        "userIdentity": {
+            "userName": null,
+            "autoUser": {
+                "scope": "pool",
+                "elevationLevel": "admin"
+            }
+        },
+        "maxTaskRetryCount": 0,
+        "waitForSuccess": true
+    },
+    "applicationPackageReferences": [
+        {
+            "applicationId": "covid19ibm",
+            "version": null
+        }
+    ]
+}

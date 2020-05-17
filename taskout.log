@@ -1,0 +1,10 @@
+[
+  {
+    "eTag": "0x8D7FA9FF7C716DF",
+    "error": null,
+    "lastModified": "2020-05-17T20:22:05.997846+00:00",
+    "location": "https://aeolus.ukwest.batch.azure.com/jobs/Trust1_20200517212123/tasks/task1",
+    "status": "success",
+    "taskId": "task1"
+  }
+]

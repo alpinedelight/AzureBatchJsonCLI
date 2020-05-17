@@ -1,0 +1,29 @@
+{
+    "id": "JOBID",
+    "displayName": "",
+    "priority": 0,
+    "poolInfo": {
+        "poolId": "POOLID",
+        "autoPoolSpecification": null
+    },
+    "jobPreparationTask": {
+        "id": "jobpreparation",
+        "commandLine": "CMDLINE",
+        "resourceFiles": [],
+        "environmentSettings": [],
+        "waitForSuccess": true,
+        "userIdentity": {
+            "autoUser": {
+                "scope": "pool",
+                "elevationLevel": "nonadmin"
+            },
+            "username": null
+        },
+        "rerunOnNodeRebootAfterSuccess": true
+    },
+    "onAllTasksComplete": "noaction",
+    "onTaskFailure": null,
+    "commonEnvironmentSettings": [],
+    "metadata": [],
+    "usesTaskDependencies": false
+}
