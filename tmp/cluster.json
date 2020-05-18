@@ -1,0 +1,53 @@
+{
+  "id": "Cluster-X1",
+  "displayName": "Cluster-X1",
+  "vmSize": "Standard_E32_v3",
+  "virtualMachineConfiguration": {
+    "imageReference": {
+      "publisher": "canonical",
+      "offer": "ubuntuserver",
+      "sku": "18.04-lts",
+      "version": "latest"
+    },
+    "nodeAgentSkuId": "batch.node.ubuntu 18.04",
+    "dataDisks": [],
+    "diskEncryptionConfiguration": {
+      "targets": []
+    }
+  },
+  "targetDedicatedNodes": 20,
+  "targetLowPriorityNodes": 10,
+  "interNodeCommunication": "Disabled",
+  "networkConfiguration": {
+    "subnetId": "/subscriptions/724f5166-6a33-4da8-a296-224b3d362c68/resourceGroups/batcher_neu_dev_rg/providers/Microsoft.Network/virtualNetworks/batcher_neu_dev_vnet/subnets/batch"
+  },
+  "maxTasksPerNode": "32",
+  "taskSchedulingPolicy": {
+    "nodeFillType": "Pack"
+  },
+  "startTask": {
+    "commandLine": "/bin/bash -c \"apt update && apt -q -y install libgsl23\"",
+    "resourceFiles": [],
+    "environmentSettings": [
+      {
+        "name": "DEBIAN_FRONTEND",
+        "value": "noninteractive"
+      }
+    ],
+    "userIdentity": {
+      "userName": null,
+      "autoUser": {
+        "scope": "pool",
+        "elevationLevel": "admin"
+      }
+    },
+    "maxTaskRetryCount": 0,
+    "waitForSuccess": true
+  },
+  "applicationPackageReferences": [
+    {
+      "applicationId": "covid19ibm",
+      "version": null
+    }
+  ]
+}

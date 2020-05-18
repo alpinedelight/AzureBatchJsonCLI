@@ -15,13 +15,8 @@
             "targets": []
         }
     },
-    "scaleSettings": {
-        "fixedScale": {
-            "resizeTimeout": "PT15M",
-            "targetDedicatedNodes": 0,
-            "targetLowPriorityNodes": 0
-        }
-    },
+    "targetDedicatedNodes": 0,
+    "targetLowPriorityNodes": 0,
     "interNodeCommunication": "Disabled",
     "networkConfiguration": {
         "subnetId": "/subscriptions/TENANT/resourceGroups/RESOURCEGROUP/providers/Microsoft.Network/virtualNetworks/VNETNAME/subnets/SUBNETNAME"

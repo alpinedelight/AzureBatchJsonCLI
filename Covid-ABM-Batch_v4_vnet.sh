@@ -8,25 +8,26 @@ az batch account login --name 'batcherneudev' --resource-group 'batcher_neu_dev_
 
 ##### PARAMETERS
 # batch account details
-clustername='Cluster-X'
-clustervmtype='Standard_E32_v3'
+clustername='Cluster-X1'
+clustervmtype='Standard_E32_v3' #'Standard_H16' #
 clustercmd='/bin/bash -c "apt update && apt -q -y install libgsl23"'
-dedicatednodes=2
-lowprinodes=1
+dedicatednodes=20
+lowprinodes=10
 nodeconcurrenttasks=32
+vnetsubnet='/subscriptions/724f5166-6a33-4da8-a296-224b3d362c68/resourceGroups/batcher_neu_dev_rg/providers/Microsoft.Network/virtualNetworks/batcher_neu_dev_vnet/subnets/batch'
 jobnamesuffix=`date '+%Y%m%d%H%M%S'`
 # rf resource files storage
 rf_account='batcherneudevblob'
 rf_resource_container='resources'
 rf_results_container='output'
 # job definition
-joblistfile='./joblist1test.csv'
+joblistfile='./joblistlarge.csv'   #'./joblistlarge.csv''./joblist1test.csv'
 
 mkdir ./tmp/ #to hold generated json batch defintions (cluster, jobs, tasks)
 
 ##### CREATE CLUSTER
 echo "Create Cluster: $clustername, $dedicatednodes (x$nodeconcurrenttasks), $clustervmtype"
-jq --arg cn "$clustername" --arg cvm "$clustervmtype" --arg n $dedicatednodes --arg lpn $lowprinodes --arg nct "$nodeconcurrenttasks" --arg cmd "$clustercmd" '.id=$cn | .displayName=$cn | .vmSize=$cvm | .scaleSettings.fixedScale.targetDedicatedNodes=($n|tonumber) | .scaleSettings.fixedScale.targetLowPriorityNodes=($lpn|tonumber) | .maxTasksPerNode=$nct | .startTask.commandLine=$cmd' clustervnetdefinition.json > ./tmp/cluster.json
+jq --arg cn "$clustername" --arg cvm "$clustervmtype" --arg n $dedicatednodes --arg lpn $lowprinodes --arg nct "$nodeconcurrenttasks" --arg subnet "$vnetsubnet" --arg cmd "$clustercmd" '.id=$cn | .displayName=$cn | .vmSize=$cvm | .targetDedicatedNodes=($n|tonumber) | .targetLowPriorityNodes=($lpn|tonumber) | .maxTasksPerNode=$nct | .networkConfiguration.subnetId=$subnet | .startTask.commandLine=$cmd' clustervnetdefinition.json > ./tmp/cluster.json
 az batch pool create --json-file ./tmp/cluster.json
 
 #az batch pool resize \

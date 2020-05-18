@@ -8,7 +8,7 @@ az batch account login --name 'aeolus' --resource-group 'DataReplication-Dev-RG'
 
 ##### PARAMETERS
 # batch account details
-clustername='Cluster-X1'
+clustername='Cluster-X2'
 clustervmtype='Standard_E32_v3'
 clustercmd='/bin/bash -c "apt update && apt -q -y install libgsl23"'
 dedicatednodes=2
@@ -26,8 +26,9 @@ mkdir ./tmp/ #to hold generated json batch defintions (cluster, jobs, tasks)
 
 ##### CREATE CLUSTER
 echo "Create Cluster: $clustername, $dedicatednodes (x$nodeconcurrenttasks), $clustervmtype"
-jq --arg cn "$clustername" --arg cvm "$clustervmtype" --arg n $dedicatednodes --arg lpn $lowprinodes --arg nct "$nodeconcurrenttasks" --arg cmd "$clustercmd" '.id=$cn | .displayName=$cn | .vmSize=$cvm | .scaleSettings.fixedScale.targetDedicatedNodes=($n|tonumber) | .scaleSettings.fixedScale.targetLowPriorityNodes=($lpn|tonumber) | .maxTasksPerNode=$nct | .startTask.commandLine=$cmd' clusterdefinition.json > ./tmp/cluster.json
+jq --arg cn "$clustername" --arg cvm "$clustervmtype" --arg n $dedicatednodes --arg lpn $lowprinodes --arg nct "$nodeconcurrenttasks" --arg cmd "$clustercmd" '.id=$cn | .displayName=$cn | .vmSize=$cvm | .targetDedicatedNodes=($n|tonumber) | .targetLowPriorityNodes=($lpn|tonumber) | .maxTasksPerNode=$nct | .startTask.commandLine=$cmd' clusterdefinition.json > ./tmp/cluster.json
 az batch pool create --json-file ./tmp/cluster.json
+# .scaleSettings.fixedScale
 
 #az batch pool resize \
 #    --pool-id $clustername \

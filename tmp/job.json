@@ -1,0 +1,46 @@
+{
+  "id": "Trust10_20200518121955",
+  "displayName": "",
+  "priority": 0,
+  "poolInfo": {
+    "poolId": "Cluster-X1",
+    "autoPoolSpecification": null
+  },
+  "jobPreparationTask": {
+    "id": "jobpreparation",
+    "commandLine": "/bin/bash -c \"printenv && mkdir $AZ_BATCH_NODE_SHARED_DIR/Trust10_20200518121955 && mv $AZ_BATCH_TASK_WORKING_DIR/* $AZ_BATCH_NODE_SHARED_DIR/Trust10_20200518121955\"",
+    "resourceFiles": [
+      {
+        "filePath": "baseline_household_demographics.csv",
+        "httpUrl": "https://batcherneudevblob.blob.core.windows.net/resources/baseline_household_demographics.csv?se=2020-05-20&sp=racw&sv=2018-11-09&sr=c&skoid=49298f22-66af-4780-a789-dbbfc70294f1&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2020-05-18T11%3A20%3A00Z&ske=2020-05-20T00%3A00%3A00Z&sks=b&skv=2018-11-09&sig=7XDb9yXk3uvLxJ4UjPxGpd3XLr9tHGwiZAdqOY5Wlnk%3D"
+      },
+      {
+        "filePath": "baseline_parameters.csv",
+        "httpUrl": "https://batcherneudevblob.blob.core.windows.net/resources/baseline_parameters.csv?se=2020-05-20&sp=racw&sv=2018-11-09&sr=c&skoid=49298f22-66af-4780-a789-dbbfc70294f1&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2020-05-18T11%3A20%3A00Z&ske=2020-05-20T00%3A00%3A00Z&sks=b&skv=2018-11-09&sig=7XDb9yXk3uvLxJ4UjPxGpd3XLr9tHGwiZAdqOY5Wlnk%3D"
+      },
+      {
+        "filePath": "baseline_parameters_transpose.csv",
+        "httpUrl": "https://batcherneudevblob.blob.core.windows.net/resources/baseline_parameters_transpose.csv?se=2020-05-20&sp=racw&sv=2018-11-09&sr=c&skoid=49298f22-66af-4780-a789-dbbfc70294f1&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2020-05-18T11%3A20%3A00Z&ske=2020-05-20T00%3A00%3A00Z&sks=b&skv=2018-11-09&sig=7XDb9yXk3uvLxJ4UjPxGpd3XLr9tHGwiZAdqOY5Wlnk%3D"
+      },
+      {
+        "filePath": "Trust10_parameters.csv",
+        "httpUrl": "https://batcherneudevblob.blob.core.windows.net/resources/Trust10_parameters.csv?se=2020-05-20&sp=racw&sv=2018-11-09&sr=c&skoid=49298f22-66af-4780-a789-dbbfc70294f1&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2020-05-18T11%3A20%3A00Z&ske=2020-05-20T00%3A00%3A00Z&sks=b&skv=2018-11-09&sig=7XDb9yXk3uvLxJ4UjPxGpd3XLr9tHGwiZAdqOY5Wlnk%3D"
+      }
+    ],
+    "environmentSettings": [],
+    "waitForSuccess": true,
+    "userIdentity": {
+      "autoUser": {
+        "scope": "pool",
+        "elevationLevel": "nonadmin"
+      },
+      "username": null
+    },
+    "rerunOnNodeRebootAfterSuccess": true
+  },
+  "onAllTasksComplete": "noaction",
+  "onTaskFailure": null,
+  "commonEnvironmentSettings": [],
+  "metadata": [],
+  "usesTaskDependencies": false
+}
